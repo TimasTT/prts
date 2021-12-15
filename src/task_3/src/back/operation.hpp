@@ -9,6 +9,7 @@
 #include <vector>
 
 #include "mission.hpp"
+#include "position.hpp"
 
 class Operation {
 private:
@@ -16,12 +17,10 @@ private:
 
     std::unique_ptr<IMission> currentMission;
 
-    int currentX;
-    int currentY;
-    int currentZ;
+    Position position;
 
 public:
-    Operation();
+    Operation() = default;
 
     ~Operation() = default;
 
@@ -31,11 +30,7 @@ public:
 
     void SetMission(std::unique_ptr<IMission> mission);
 
-    int GetCurrentX() const;
-
-    int GetCurrentY() const;
-
-    int GetCurrentZ() const;
+    void ShowOperation() const;
 };
 
 #endif //TASK_3_OPERATION_HPP

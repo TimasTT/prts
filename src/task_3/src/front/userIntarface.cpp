@@ -25,44 +25,47 @@ void UserInterface::startOperation() {
     std::cout << "Конец операции, данные об операции записаны в txt файл.";
 }
 
-bool UserInterface::NewAction(int missionType) {
+bool UserInterface::NewAction(int eventType) {
     bool stop = false;
+    if (eventType == 5) {
+        ShowAllMissions();
+        return stop;
+    }
     std::unique_ptr<IMission> mission;
-    if (missionType == 1) {
+    if (eventType == DIVE_MISSION || eventType == LIFT_MISSION) {
         int deepSetting; // 0 - датчик глубины (глубина) ; 1 - эхолот (отстояние)
         int deepValue;
-        int deepType; // 0 - спираль; 1 - вертикальные движения
+        int deepType; // 0 - спираль; 1 - вертикальные движители
+
         std::cout << "Введите способ задания глубины (0 - датчик глубины (глубина) ; 1 - эхолот (отстояние)): " << std::endl;
         while (true) {
             std::cin >> deepSetting;
             if (deepSetting != 0 && deepSetting != 1) {
-                std::cout << "Неверный способ задания глубины. Введите способ задания глубины ещё раз.";
+                std::cout << "Неверный способ задания глубины. Введите способ задания глубины ещё раз." << std::endl;
                 std::cin >> deepSetting;
             } else {
                 break;
             }
         }
-        std::cout << "Введите глубину погружения: " << std::endl;
-        while (true) {
-            std::cin >> deepValue;
-            if (deepValue <= 0) {
-                std::cout << "Неверная глубина погружения(отстояния). Глубина погружения(отстояния) - положительное число.";
-                std::cin >> deepValue;
-            } else {
-                break;
-            }
-        }
-        std::cout << "Введите тип погружения (0 - по спирали; 1 - вертикальные движения): " << std::endl;
+
+        std::cout << "Введите глубину погружения(отстояния): " << std::endl;
+        std::cin >> deepValue;
+
+        std::cout << "Введите тип погружения (0 - по спирали; 1 - вертикальные движители): " << std::endl;
         while (true) {
             std::cin >> deepType;
             if (deepType != 0 && deepType != 1) {
-                std::cout << "Неверный тип погружения. Введите тип погружения ещё раз.";
+                std::cout << "Неверный тип погружения. Введите тип погружения ещё раз." << std::endl;
                 std::cin >> deepType;
             } else {
                 break;
             }
         }
-        mission = std::make_unique<Dive>(deepSetting, deepValue, deepType, operation->GetCurrentZ());
+        if (eventType == DIVE_MISSION) {
+            mission = std::make_unique<Dive>(deepSetting, deepValue, deepType);
+        } else {
+            mission = std::make_unique<Lift>(deepSetting, deepValue, deepType);
+        }
     }
     operation->SetMission(std::move(mission));
     operation->Do();
@@ -70,5 +73,5 @@ bool UserInterface::NewAction(int missionType) {
 }
 
 void UserInterface::ShowAllMissions() {
-
+    operation->ShowOperation();
 }

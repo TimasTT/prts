@@ -2,17 +2,16 @@
 // Created by timas on 15.12.2021.
 //
 
+#include <iostream>
 #include "operation.hpp"
 #include "mission.hpp"
 
-Operation::Operation(): currentX(0), currentY(0), currentZ(0) {
-}
-
 void Operation::Do() {
-    if (currentMission->Check()) {
+    if (currentMission->Move(position)) {
         missionsList.push_back(std::move(currentMission));
+        return;
     }
-
+    std::cout << "Миссия невозможна." << std::endl;
 }
 
 void Operation::CreateFileWithOperationData() const {
@@ -23,15 +22,11 @@ void Operation::SetMission(std::unique_ptr<IMission> mission) {
     currentMission = std::move(mission);
 }
 
-int Operation::GetCurrentX() const {
-    return currentX;
-}
-
-int Operation::GetCurrentY() const {
-    return currentY;
-}
-
-int Operation::GetCurrentZ() const {
-    return currentZ;
+void Operation::ShowOperation() const {
+    int missionIndex = 0;
+    for (const auto &mission : missionsList) {
+        std::cout << "Миссия " << missionIndex++ << std::endl;
+        std::cout << mission->GetMissionData() << std::endl;
+    }
 }
 

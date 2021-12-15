@@ -7,6 +7,12 @@
 
 #include <memory>
 
+#define DIVE_MISSION 1
+#define LIFT_MISSION 2
+#define MOVE_MISSION 3
+#define RETURN_MISSION 4
+#define SHOW_MISSIONS 5
+
 class Operation;
 
 class UserInterface {
