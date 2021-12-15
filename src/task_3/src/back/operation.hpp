@@ -31,6 +31,8 @@ public:
     void SetMission(std::unique_ptr<IMission> mission);
 
     void ShowOperation() const;
+
+    size_t getOperationLen() const;
 };
 
 #endif //TASK_3_OPERATION_HPP

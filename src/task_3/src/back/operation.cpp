@@ -30,3 +30,7 @@ void Operation::ShowOperation() const {
     }
 }
 
+size_t Operation::getOperationLen() const {
+    return missionsList.size();
+}
+

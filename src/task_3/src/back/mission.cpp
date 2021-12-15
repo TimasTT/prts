@@ -27,15 +27,15 @@ const std::string &Dive::GetMissionData() {
 }
 
 bool Dive::Move(Position& position) {
-    unsigned int currentPositionZ = position.GetPositionZ();
+    int currentPositionZ = position.GetPositionZ();
     if (deepSetting == 0) {
-        if (currentPositionZ + deepValue < maxDeep) {
+        if (currentPositionZ + deepValue <= maxDeep) {
             position.ChangePositionZ(deepValue);
             currentDeep = position.GetPositionZ();
             return true;
         }
     } else {
-        if (currentPositionZ - deepValue > minDeep) {
+        if (currentPositionZ - deepValue >= minDeep) {
             position.ChangePositionZ(-deepValue);
             currentDeep = position.GetPositionZ();
             return true;
@@ -71,13 +71,13 @@ const std::string &Lift::GetMissionData() {
 bool Lift::Move(Position& position) {
     unsigned int currentPositionZ = position.GetPositionZ();
     if (deepSetting == 0) {
-        if (currentPositionZ + deepValue < maxDeep) {
+        if (currentPositionZ + deepValue <= maxDeep) {
             position.ChangePositionZ(deepValue);
             currentDeep = position.GetPositionZ();
             return true;
         }
     } else {
-        if (currentPositionZ - deepValue > minDeep) {
+        if (currentPositionZ - deepValue >= minDeep) {
             position.ChangePositionZ(-deepValue);
             currentDeep = position.GetPositionZ();
             return true;
