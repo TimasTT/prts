@@ -6,24 +6,22 @@
 Dive::Dive(int deepSetting, int deepValue, int deepType, int currentDeep)
         : deepSetting(deepSetting), deepValue(deepValue), deepType(deepType), currentDeep(currentDeep) {}
 
-const std::string &Dive::GetMissionData() {
+const std::string &Dive::GetMissionData() const {
 //    return <#initializer#>;
 }
 
-bool Dive::Check() {
-    return false;
+bool Dive::Check() const {
+    return true;
 }
 
 
 Lift::Lift(int deepSetting, int deepValue, int deepType, int currentDeep)
-        : deepSetting(deepSetting), deepValue(deepValue), deepType(deepType), currentDeep(currentDeep) {
+        : deepSetting(deepSetting), deepValue(deepValue), deepType(deepType), currentDeep(currentDeep) {}
 
-}
-
-const std::string &Lift::GetMissionData() {
+const std::string &Lift::GetMissionData() const {
 //    return <#initializer#>;
 }
 
-bool Lift::Check() {
+bool Lift::Check() const {
     return false;
 }

@@ -12,9 +12,9 @@ class IMission {
 public:
     virtual ~IMission() = default;
 
-    virtual bool Check() = 0;
+    virtual bool Check() const = 0;
 
-    virtual const std::string &GetMissionData() = 0;
+    virtual const std::string &GetMissionData() const = 0;
 };
 
 class Dive: public IMission {
@@ -35,9 +35,9 @@ public:
 
     ~Dive() override = default;
 
-    bool Check() override;
+    bool Check() const override;
 
-    const std::string &GetMissionData() override;
+    const std::string &GetMissionData() const override;
 };
 
 class Lift: public IMission {
@@ -56,9 +56,9 @@ public:
 
     explicit Lift(int deepSetting, int deepValue, int deepType, int currentDeep);
 
-    bool Check() override;
+    bool Check() const override;
 
-    const std::string &GetMissionData() override;
+    const std::string &GetMissionData() const override;
 };
 
 #endif //TASK_3_MISSION_HPP

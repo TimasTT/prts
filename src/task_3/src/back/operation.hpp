@@ -14,6 +14,8 @@ class Operation {
 private:
     std::vector<std::unique_ptr<IMission>> missionsList;
 
+    std::unique_ptr<IMission> currentMission;
+
     int currentX;
     int currentY;
     int currentZ;
@@ -25,7 +27,15 @@ public:
 
     void Do();
 
-    void CreateFileWithOperationData();
+    void CreateFileWithOperationData() const;
+
+    void SetMission(std::unique_ptr<IMission> mission);
+
+    int GetCurrentX() const;
+
+    int GetCurrentY() const;
+
+    int GetCurrentZ() const;
 };
 
 #endif //TASK_3_OPERATION_HPP

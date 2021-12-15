@@ -13,7 +13,7 @@ class UserInterface {
 private:
     std::unique_ptr<Operation> operation;
 
-    void NewMission(const std::string& missionName);
+    bool NewAction(int missionType);
 
     void ShowAllMissions();
 
