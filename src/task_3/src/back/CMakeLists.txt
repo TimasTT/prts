@@ -5,5 +5,4 @@ add_library(${LIBNAME}
         mission.cpp
         operation.hpp
         operation.cpp
-        position.hpp
-        position.cpp)
+        )
